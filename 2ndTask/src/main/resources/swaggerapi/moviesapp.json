@@ -1,0 +1,1580 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8081",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "activity-controller",
+      "description": "Activity Controller"
+    },
+    {
+      "name": "director-controller",
+      "description": "Director Controller"
+    },
+    {
+      "name": "movie-controller",
+      "description": "Movie Controller"
+    },
+    {
+      "name": "profile-controller",
+      "description": "Profile Controller"
+    },
+    {
+      "name": "report-controller",
+      "description": "Report Controller"
+    },
+    {
+      "name": "rest-template-controller",
+      "description": "Rest Template Controller"
+    },
+    {
+      "name": "task-controller",
+      "description": "Task Controller"
+    }
+  ],
+  "paths": {
+    "/directors": {
+      "get": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "getAllDirectors",
+        "operationId": "getAllDirectorsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«DirectorDTO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "addDirector",
+        "operationId": "addDirectorUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "directorDTO",
+            "description": "directorDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DirectorDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/directors/list": {
+      "get": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "getAllDirectorsAsList",
+        "operationId": "getAllDirectorsAsListUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DirectorDTO"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/directors/{id}": {
+      "get": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "getDirectorById",
+        "operationId": "getDirectorByIdUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DirectorDTO"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "updateDirector",
+        "operationId": "updateDirectorUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "directorDTO",
+            "description": "directorDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DirectorDTO"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "deleteDirectorById",
+        "operationId": "deleteDirectorByIdUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/directors/{id}/movies": {
+      "get": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "getDirectorMovies",
+        "operationId": "getDirectorMoviesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«MovieDTO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "addMovieToDirector",
+        "operationId": "addMovieToDirectorUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "movieDTO",
+            "description": "movieDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MovieDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/directors/{id}/movies/{movieId}": {
+      "get": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "getDirectorMovieById",
+        "operationId": "getDirectorMovieByIdUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "movieId",
+            "in": "path",
+            "description": "movieId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MovieDTO"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "updateDirectorMovie",
+        "operationId": "updateDirectorMovieUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "movieDTO",
+            "description": "movieDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MovieDTO"
+            }
+          },
+          {
+            "name": "movieId",
+            "in": "path",
+            "description": "movieId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "director-controller"
+        ],
+        "summary": "deleteDirectorMovieById",
+        "operationId": "deleteDirectorMovieByIdUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "movieId",
+            "in": "path",
+            "description": "movieId",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/movies": {
+      "get": {
+        "tags": [
+          "movie-controller"
+        ],
+        "summary": "getAllMovies",
+        "operationId": "getAllMoviesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Page«MovieDTO»"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "movie-controller"
+        ],
+        "summary": "addMovie",
+        "operationId": "addMovieUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "movieDTO",
+            "description": "movieDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MovieDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/movies/genres": {
+      "get": {
+        "tags": [
+          "movie-controller"
+        ],
+        "summary": "getAllGenres",
+        "operationId": "getAllGenresUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "COMEDY",
+                  "SCI_FI",
+                  "HORROR",
+                  "ROMANCE",
+                  "ACTION",
+                  "THRILLER",
+                  "DRAMA",
+                  "MYSTERY",
+                  "CRIME",
+                  "ANIMATION",
+                  "ADVENTURE",
+                  "FANTASY",
+                  "COMEDY_ROMANCE",
+                  "ACTION_COMEDY",
+                  "SUPERHERO",
+                  "BIOGRAPHY",
+                  "DOCUMENTARY",
+                  "HISTORY",
+                  "MUSICAL",
+                  "WESTERN"
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/movies/{id}": {
+      "get": {
+        "tags": [
+          "movie-controller"
+        ],
+        "summary": "getMovieById",
+        "operationId": "getMovieByIdUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/MovieDTO"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "movie-controller"
+        ],
+        "summary": "deleteMovieById",
+        "operationId": "deleteMovieByIdUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/profiles": {
+      "get": {
+        "tags": [
+          "profile-controller"
+        ],
+        "summary": "getProfiles",
+        "operationId": "getProfilesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/profiles/active": {
+      "get": {
+        "tags": [
+          "profile-controller"
+        ],
+        "summary": "getActiveProfile",
+        "operationId": "getActiveProfileUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/randomActivity": {
+      "get": {
+        "tags": [
+          "activity-controller"
+        ],
+        "summary": "getRandomActivity",
+        "operationId": "getRandomActivityUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/randomUsers": {
+      "get": {
+        "tags": [
+          "rest-template-controller"
+        ],
+        "summary": "getRandomUsers",
+        "operationId": "getRandomUsersUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "results",
+            "in": "query",
+            "description": "results",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/report": {
+      "get": {
+        "tags": [
+          "report-controller"
+        ],
+        "summary": "generateReport",
+        "operationId": "generateReportUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/tasks": {
+      "get": {
+        "tags": [
+          "task-controller"
+        ],
+        "summary": "getAlLTasks",
+        "operationId": "getAlLTasksUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "task-controller"
+        ],
+        "summary": "saveTask",
+        "operationId": "saveTaskUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "task",
+            "description": "task",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "tags": [
+          "task-controller"
+        ],
+        "summary": "getTaskById",
+        "operationId": "getTaskByIdUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "task-controller"
+        ],
+        "summary": "updateTaskById",
+        "operationId": "updateTaskByIdUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "task",
+            "description": "task",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "task-controller"
+        ],
+        "summary": "deleteTaskById",
+        "operationId": "deleteTaskByIdUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseEntity"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "Director": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      },
+      "title": "Director"
+    },
+    "DirectorDTO": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      },
+      "title": "DirectorDTO"
+    },
+    "MovieDTO": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "director": {
+          "$ref": "#/definitions/Director"
+        },
+        "genre": {
+          "type": "string",
+          "enum": [
+            "COMEDY",
+            "SCI_FI",
+            "HORROR",
+            "ROMANCE",
+            "ACTION",
+            "THRILLER",
+            "DRAMA",
+            "MYSTERY",
+            "CRIME",
+            "ANIMATION",
+            "ADVENTURE",
+            "FANTASY",
+            "COMEDY_ROMANCE",
+            "ACTION_COMEDY",
+            "SUPERHERO",
+            "BIOGRAPHY",
+            "DOCUMENTARY",
+            "HISTORY",
+            "MUSICAL",
+            "WESTERN"
+          ]
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "MovieDTO"
+    },
+    "Pageable": {
+      "type": "object",
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pageNumber": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "paged": {
+          "type": "boolean"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "unpaged": {
+          "type": "boolean"
+        }
+      },
+      "title": "Pageable"
+    },
+    "Page«DirectorDTO»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DirectorDTO"
+          }
+        },
+        "empty": {
+          "type": "boolean"
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageable": {
+          "$ref": "#/definitions/Pageable"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "Page«DirectorDTO»"
+    },
+    "Page«MovieDTO»": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MovieDTO"
+          }
+        },
+        "empty": {
+          "type": "boolean"
+        },
+        "first": {
+          "type": "boolean"
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "pageable": {
+          "$ref": "#/definitions/Pageable"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sort": {
+          "$ref": "#/definitions/Sort"
+        },
+        "totalElements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "Page«MovieDTO»"
+    },
+    "ResponseEntity": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "object"
+        },
+        "statusCode": {
+          "type": "string",
+          "enum": [
+            "100 CONTINUE",
+            "101 SWITCHING_PROTOCOLS",
+            "102 PROCESSING",
+            "103 CHECKPOINT",
+            "200 OK",
+            "201 CREATED",
+            "202 ACCEPTED",
+            "203 NON_AUTHORITATIVE_INFORMATION",
+            "204 NO_CONTENT",
+            "205 RESET_CONTENT",
+            "206 PARTIAL_CONTENT",
+            "207 MULTI_STATUS",
+            "208 ALREADY_REPORTED",
+            "226 IM_USED",
+            "300 MULTIPLE_CHOICES",
+            "301 MOVED_PERMANENTLY",
+            "302 FOUND",
+            "302 MOVED_TEMPORARILY",
+            "303 SEE_OTHER",
+            "304 NOT_MODIFIED",
+            "305 USE_PROXY",
+            "307 TEMPORARY_REDIRECT",
+            "308 PERMANENT_REDIRECT",
+            "400 BAD_REQUEST",
+            "401 UNAUTHORIZED",
+            "402 PAYMENT_REQUIRED",
+            "403 FORBIDDEN",
+            "404 NOT_FOUND",
+            "405 METHOD_NOT_ALLOWED",
+            "406 NOT_ACCEPTABLE",
+            "407 PROXY_AUTHENTICATION_REQUIRED",
+            "408 REQUEST_TIMEOUT",
+            "409 CONFLICT",
+            "410 GONE",
+            "411 LENGTH_REQUIRED",
+            "412 PRECONDITION_FAILED",
+            "413 PAYLOAD_TOO_LARGE",
+            "413 REQUEST_ENTITY_TOO_LARGE",
+            "414 URI_TOO_LONG",
+            "414 REQUEST_URI_TOO_LONG",
+            "415 UNSUPPORTED_MEDIA_TYPE",
+            "416 REQUESTED_RANGE_NOT_SATISFIABLE",
+            "417 EXPECTATION_FAILED",
+            "418 I_AM_A_TEAPOT",
+            "419 INSUFFICIENT_SPACE_ON_RESOURCE",
+            "420 METHOD_FAILURE",
+            "421 DESTINATION_LOCKED",
+            "422 UNPROCESSABLE_ENTITY",
+            "423 LOCKED",
+            "424 FAILED_DEPENDENCY",
+            "426 UPGRADE_REQUIRED",
+            "428 PRECONDITION_REQUIRED",
+            "429 TOO_MANY_REQUESTS",
+            "431 REQUEST_HEADER_FIELDS_TOO_LARGE",
+            "451 UNAVAILABLE_FOR_LEGAL_REASONS",
+            "500 INTERNAL_SERVER_ERROR",
+            "501 NOT_IMPLEMENTED",
+            "502 BAD_GATEWAY",
+            "503 SERVICE_UNAVAILABLE",
+            "504 GATEWAY_TIMEOUT",
+            "505 HTTP_VERSION_NOT_SUPPORTED",
+            "506 VARIANT_ALSO_NEGOTIATES",
+            "507 INSUFFICIENT_STORAGE",
+            "508 LOOP_DETECTED",
+            "509 BANDWIDTH_LIMIT_EXCEEDED",
+            "510 NOT_EXTENDED",
+            "511 NETWORK_AUTHENTICATION_REQUIRED"
+          ]
+        },
+        "statusCodeValue": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ResponseEntity"
+    },
+    "Sort": {
+      "type": "object",
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "sorted": {
+          "type": "boolean"
+        },
+        "unsorted": {
+          "type": "boolean"
+        }
+      },
+      "title": "Sort"
+    },
+    "Task": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "endDateImplementation": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "IMPORTANT",
+            "MEDIUM",
+            "SMALL"
+          ]
+        }
+      },
+      "title": "Task"
+    }
+  }
+}

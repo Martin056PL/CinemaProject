@@ -1,0 +1,115 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://localhost:8080/soap/movies"
+           xmlns:tns="http://localhost:8080/soap/movies"
+           elementFormDefault="qualified">
+
+    <!-- objects -->
+
+    <xs:complexType name="movieSOAP">
+        <xs:sequence>
+            <xs:element name="movieId" type="xs:long"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="datePremiere" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="createAndUpdateMovieRequest">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="datePremiere" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="serviceStatus">
+        <xs:sequence>
+            <xs:element name="statusCode" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- crud methods -->
+
+    <xs:element name="getAllMoviesRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <xs:element name="getAllMoviesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="movieSOAP" type="tns:movieSOAP" maxOccurs="unbounded"/>
+                <xs:element name="ServiceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getMoviesByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="movieId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getMoviesByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="movieSOAP" type="tns:movieSOAP"/>
+                <xs:element name="ServiceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createMovieRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="requestBodySOAPMovie" type="tns:createAndUpdateMovieRequest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createMovieResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="movieSOAP" type="tns:movieSOAP"/>
+                <xs:element name="ServiceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateMovieRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="updateMovie" type="tns:createAndUpdateMovieRequest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateMovieResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="movieSOAP" type="tns:movieSOAP"/>
+                <xs:element name="ServiceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteMovieRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteMovieResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ServiceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

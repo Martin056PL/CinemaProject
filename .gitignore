@@ -1,0 +1,11 @@
+2ndTask/.idea
+2ndTask/.mvn
+2ndTask/node_modules
+2ndTask/target
+my-app/node_modules
+.idea/*
+2ndTask/rest-app.iml
+2ndTask/2ndTask.iml
+2ndTask/logs/*
+2ndTask/resources/reports/*
+2ndTask/resources/download/*

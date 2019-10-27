@@ -1,0 +1,50 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="Kamil Wawer">
+        <createTable tableName="actors">
+            <column name="actor_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="age" type="int"/>
+            <column name="first_name" type="varchar(255)"/>
+            <column name="last_name" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Kamil Wawer">
+        <createTable tableName="movies">
+            <column name="movie_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date_premiere" type="date"/>
+            <column name="title" type="varchar(255)"/>
+            <column name="type" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="Kamil Wawer">
+        <createTable tableName="movies_actors">
+            <column name="movie_id" type="bigint"/>
+            <column name="actor_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="Kamil Wawer">
+        <addForeignKeyConstraint
+                baseColumnNames="movie_id"
+                baseTableName="movies_actors"
+                constraintName="FKo40lc9yirox8um5poaxhw6ak0"
+                referencedTableName="movies"
+                referencedColumnNames="movie_id"/>
+        <addForeignKeyConstraint
+                baseColumnNames="actor_id"
+                baseTableName="movies_actors"
+                constraintName="FKlexe564x1fi4ssje5wcuii3v2"
+                referencedTableName="actors"
+                referencedColumnNames="actor_id"/>
+    </changeSet>
+
+</databaseChangeLog>

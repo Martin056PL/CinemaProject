@@ -1,0 +1,73 @@
+//config for generate wsdl
+
+@Bean
+    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
+        MessageDispatcherServlet servlet = new MessageDispatcherServlet();
+        servlet.setApplicationContext(applicationContext);
+        servlet.setTransformWsdlLocations(true);
+        return new ServletRegistrationBean(servlet, "/ws/*");
+    }
+
+    @Bean(name = "movies")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("MoviesPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://localhost:8080/soap/movies");
+        wsdl11Definition.setSchema(countriesSchema);
+        return wsdl11Definition;
+    }
+
+    //plugins for generete class and wsdl
+
+    <!--            <plugin>-->
+    <!--                <groupId>org.apache.cxf</groupId>-->
+    <!--                <artifactId>cxf-codegen-plugin</artifactId>-->
+    <!--                <version>2.2.10</version>-->
+    <!--                <executions>-->
+    <!--                    <execution>-->
+    <!--                        <id>generate-sources</id>-->
+    <!--                        <phase>generate-sources</phase>-->
+    <!--                        <configuration>-->
+    <!--                            <sourceRoot>${basedir}/src/main/java/</sourceRoot>-->
+    <!--                            <wsdlOptions>-->
+    <!--                                <wsdlOption>-->
+    <!--                                    <wsdl>src/main/resources/movies.wsdl</wsdl>-->
+    <!--                                    <extraargs>-->
+    <!--                                        <extraarg>-p</extraarg>-->
+    <!--                                        <extraarg>pl.com.tt.restapp.soap.sources</extraarg>-->
+    <!--                                    </extraargs>-->
+    <!--                                </wsdlOption>-->
+    <!--                            </wsdlOptions>-->
+    <!--                        </configuration>-->
+    <!--                        <goals>-->
+    <!--                            <goal>wsdl2java</goal>-->
+    <!--                        </goals>-->
+    <!--                    </execution>-->
+    <!--                </executions>-->
+    <!--            </plugin>-->
+
+
+           <!-- generator wsdl-a -->
+    <!--                <pluginManagement>-->
+    <!--                    <plugins>-->
+    <!--                        <plugin>-->
+    <!--                            <groupId>org.codehaus.mojo</groupId>-->
+    <!--                            <artifactId>jaxb2-maven-plugin</artifactId>-->
+    <!--                            <version>3.3.2</version>-->
+    <!--                            <executions>-->
+    <!--                                <execution>-->
+    <!--                                    <id>xjc</id>-->
+    <!--                                    <goals>-->
+    <!--                                        <goal>xjc</goal>-->
+    <!--                                    </goals>-->
+    <!--                                </execution>-->
+    <!--                            </executions>-->
+    <!--                            <configuration>-->
+    <!--                                <schemaDirectory>${project.basedir}/src/main/resources/</schemaDirectory>-->
+    <!--                                <outputDirectory>${project.basedir}/src/main/java</outputDirectory>-->
+    <!--                                <clearOutputDir>false</clearOutputDir>-->
+    <!--                            </configuration>-->
+    <!--                        </plugin>-->
+    <!--                    </plugins>-->
+    <!--                </pluginManagement>-->
